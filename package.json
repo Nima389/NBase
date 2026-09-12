@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "build": "npx tsc --build"
+    "sub:build": "npx tsc --build",
+    "sub:copy-public": "node -e \"require('fs').cpSync('public', 'dist', {recursive:true})\"",
+    "build": "npm run sub:build && npm run sub:copy-public"
   },
   "keywords": [],
   "author": "TheVillain",
