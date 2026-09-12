@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const DIST_DIR = __dirname;
-const INDEX_HTML = path.join(DIST_DIR, "index.html");
+const INDEX_HTML = path.join(DIST_DIR, "/index.html");
 
 // Serve static assets from dist (copied from public via build)
 app.use(express.static(DIST_DIR));
