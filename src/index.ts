@@ -8,7 +8,7 @@ const port = process.env.PORT;
 
 app.init();
 
-app.get("/NBase", (_req, res) => {
+app.get("/", (_req, res) => {
   res.status(200).sendFile(__dirname + "/index.html");
 });
 
