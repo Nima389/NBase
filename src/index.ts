@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 // Serve static assets from dist (copied from public via build)
 app.use(express.static(__dirname));
 
-app.get("/{*any}", (_req, res) => {
+app.get("/", (_req, res) => {
   res.status(200).sendFile(path.join(__dirname, "index.html"));
 });
 
