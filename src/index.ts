@@ -7,11 +7,16 @@ configDotenv();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Serve static assets from dist (copied from public via build)
-app.use(express.static(__dirname));
+const DIST_DIR = __dirname;
+const INDEX_HTML = path.join(DIST_DIR, "index.html");
 
-app.get("/", (_req, res) => {
-  res.status(200).sendFile(path.join(__dirname, "index.html"));
+// Serve static assets from dist (copied from public via build)
+app.use(express.static(DIST_DIR));
+
+// SPA fallback: any unmatched GET returns index.html
+app.use((req, res, next) => {
+  if (req.method !== "GET") return next();
+  res.status(200).sendFile(INDEX_HTML);
 });
 
 app.listen(port, function () {
