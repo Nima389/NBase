@@ -13,10 +13,8 @@ const INDEX_HTML = path.join(DIST_DIR, "/index.html");
 // Serve static assets from dist (copied from public via build)
 app.use(express.static(DIST_DIR));
 
-// SPA fallback: any unmatched GET returns index.html
-app.use((req, res, next) => {
-  if (req.method !== "GET") return next();
-  res.status(200).sendFile(INDEX_HTML);
+app.get("/", (_req, res) => {
+  return res.send(INDEX_HTML);
 });
 
 app.listen(port, function () {
